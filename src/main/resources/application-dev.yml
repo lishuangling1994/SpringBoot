@@ -1,5 +1,11 @@
 #开发环境配置文件
 
+#配置web服务器的参数,访问端口是8081，访问的根路径是SpringBoot
+server:
+  port: 8081
+  servlet:
+    context-path:/SpringBoot
+
 #1.配置数据源
 spring:
  datasource:
@@ -7,6 +13,12 @@ spring:
    url: jdbc:mysql://localhost:3306/li?characterEncoding=utf8&&serverTimezone=UTC
    username: root
    password: 123456
+   druid:    #配置数据库连接池
+         initial-size: 5 #连接池初始化大小
+         min-idle: 10 #最小空闲连接数
+         max-active: 20 #最大连接数
+
+
 
 #2.配置mybatis的mapXml保存路径
 #mybatis:
@@ -21,7 +33,7 @@ logging:
       example:
         demo: info
   file:
-     path: D:/ideaWork/myBatis-boot/
+     path: 
 
 #开启myBatis的日志输出
 mybatis:
