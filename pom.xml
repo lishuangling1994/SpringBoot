@@ -9,30 +9,34 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>spring-mvc-mybatis</name>
 	<description>Demo project for Spring Boot MyBatis</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
+			<!--smybatis启动依赖-->
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>2.2.2</version>
 		</dependency>
 		<dependency>
+			<!--spring mvc所依赖的jar包和web容器-->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<!--开发阶段热部署-->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<!--mysql驱动jar包-->
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
@@ -43,6 +47,7 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<!-- 添加test的依赖-->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -58,11 +63,14 @@
 	<build>
 		<plugins>
 			<plugin>
+				<!--使用springboot-mavean插件打包可以用java -jar的方式运行jar包-->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<excludes>
 						<exclude>
+							<!--下面是java的lombak库它会自动插入编辑器和构建工具，
+							使用@data注解可以自动生成get,set,equals、hashCode和toString方法-->
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>

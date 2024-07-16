@@ -2,10 +2,12 @@ package com.example.demo;
 
 
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
 import org.junit.rules.Stopwatch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.example.demo.mapper.liMapper;
 import com.example.demo.pojo.li;
@@ -13,11 +15,11 @@ import com.example.demo.pojo.li;
 import javax.annotation.Resource;
 
 @SpringBootTest
-@Slf4j
+
 public class liMapperTest {
     @Resource
     liMapper liMapper;
-//    Logger logger= LoggerFactory.getLogger(liMapperTest.class);
+    Logger logger= LoggerFactory.getLogger(liMapperTest.class);
     @Test
     void getLis(){
         liMapper.getLi();
@@ -25,8 +27,8 @@ public class liMapperTest {
     @Test
     void getLiById(){
         liMapper.getLiById(3);
-      /*  logger.info("我是info");*/
-        log.info("我是info");
+     logger.info("我是info");
+
         liMapper.getLiById(3);
     }
     @Test
