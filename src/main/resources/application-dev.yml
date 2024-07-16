@@ -4,7 +4,7 @@
 server:
   port: 8081
   servlet:
-    context-path:/SpringBoot
+    context-path: /SpringBoot
 
 #1.配置数据源
 spring:
@@ -32,8 +32,13 @@ logging:
     com:
       example:
         demo: info
+  #p配置的是相对路径，项目路径下的logs目录下
   file:
-     path: 
+     path: logs
+#配置绝对路径，日志的名字默认是spring-{date}.log
+#  file:
+#    path:D/log
+
 
 #开启myBatis的日志输出
 mybatis:
