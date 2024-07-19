@@ -6,24 +6,32 @@ server:
   servlet:
     context-path: /SpringBoot
 
+
 #1.配置数据源
 spring:
  datasource:
    driver-class-name: com.mysql.cj.jdbc.Driver
-   url: jdbc:mysql://localhost:3306/li?characterEncoding=utf8&&serverTimezone=UTC
+   url: jdbc:mysql://localhost:3306/springboot?characterEncoding=utf8&&serverTimezone=UTC
    username: root
    password: 123456
    druid:    #配置数据库连接池
          initial-size: 5 #连接池初始化大小
          min-idle: 10 #最小空闲连接数
          max-active: 20 #最大连接数
+ mvc:  #配置mvc
+   view:
+     suffix: .html  #返回资源的后缀
+     static-locattions:
+        classpath: /static  #声明资源的位置
+     static-path-pattern: /**resource
 
 
+#2.配置mybatis开启myBatis的日志输出
+mybatis:
+  configuration:
+     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: myBatis/*Mapper.xml
 
-#2.配置mybatis的mapXml保存路径
-#mybatis:
-#mapper-locations:
- #classpath: myBatis/*Mapper.xml
 
 #3.开启mybatis的日志
 #针对某一部分开启日志级别为info,持久化日志到指定路径
@@ -39,8 +47,3 @@ logging:
 #  file:
 #    path:D/log
 
-
-#开启myBatis的日志输出
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
