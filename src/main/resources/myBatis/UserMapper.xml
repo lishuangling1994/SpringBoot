@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.liMapper" >
+    <select id="getLi" resultType="com.example.demo.pojo.li" >
+        select * from li
+    </select>
+    <select id="getLiById" resultType="com.example.demo.pojo.li" >
+        select * from li where id=#{id}
+    </select>
+    <insert id="insertLi" >
+        insert into li (name,age) VALUES (#{name},#{age})
+    </insert>
+    <insert id="insertLi1" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into li (name,age) VALUES (#{name},#{age})
+    </insert>
+    <update id="updateLiById">
+        update li set age=#{age} where id=#{id}
+    </update>
+    <update id="UpdateLiAllByid">
+        update li set age=#{age} ,name=#{name} where id=#{id}
+    </update>
+    <delete id="deleteLiById">
+        delete from li where id=${id}
+    </delete>
+
+</mapper>
