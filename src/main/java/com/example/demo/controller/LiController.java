@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/Li")
 public class LiController {
-    Logger logger= LoggerFactory.getLogger(LiController.class);
+   private static final Logger logger= LoggerFactory.getLogger(LiController.class);
     @Resource
     public UserLi userLi;
     @RequestMapping("/getLiById")
