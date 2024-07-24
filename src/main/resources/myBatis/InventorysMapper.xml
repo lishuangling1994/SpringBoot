@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace的值要和类路径完全一致要不然对应不上-->
+<mapper namespace="com.example.demo.mapper.Inventory_RecordsMapper" >
+
+    <!--根据流水获取当次出入库的记录-->
+    <select id="getRecord"  resultType="com.example.demo.pojo.Inventory_Records" >
+        select * from Inventory_Records where trandate=#{trandate} and  transerseqno=#{transerseqno};
+    </select>
+
+    <!--根据日期获取当天的交易记录-->
+    <select id="getRecordsByTranDate"  resultType="com.example.demo.pojo.Inventory_Records" >
+        select * from Inventory_Records where trandate=#{#trandate} order by prd_prdcode;
+    </select>
+
+    <!--插入明细-->
+    <insert id="AddRecords">
+        insert into Inventory_Records
+        VALUES (#{prd_prdcode},#{prd_num},#{flag},#{trandate},#{transerseqno},#{bie01},#{teller});
+    </insert>
+
+
+</mapper>
