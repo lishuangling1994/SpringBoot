@@ -14,4 +14,5 @@ public interface liMapper {
     public int updateLiById(@Param("id")int id,@Param("age") int age);
     public int deleteLiById(@Param("id") int id);
     public int insertLi1(li li);
+    public int UpdateLiAllByid(li li);
 }
