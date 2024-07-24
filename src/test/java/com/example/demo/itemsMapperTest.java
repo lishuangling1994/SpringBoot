@@ -14,6 +14,7 @@ public class itemsMapperTest {
     private itemsMapper itemsMappers;
     @Test
     public void getItem(){
+
         System.out.println(itemsMappers.getItems());
     }
     @Test
