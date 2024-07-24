@@ -3,23 +3,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--namespace的值要和类路径完全一致要不然对应不上-->
-<mapper namespace="com.example.demo.mapper.Inventory_RecordsMapper" >
+<mapper namespace="com.example.demo.mapper.InventorysMaper" >
 
-    <!--根据流水获取当次出入库的记录-->
-    <select id="getRecord"  resultType="com.example.demo.pojo.Inventory_Records" >
-        select * from Inventory_Records where trandate=#{trandate} and  transerseqno=#{transerseqno};
+    <!--获取全部的仓库数据-->
+    <select id="getAllInventorys"  resultType="com.example.demo.pojo.Inventorys" >
+        select * from Inventorys order by inventory_name,prd_prdcode;
     </select>
 
-    <!--根据日期获取当天的交易记录-->
-    <select id="getRecordsByTranDate"  resultType="com.example.demo.pojo.Inventory_Records" >
-        select * from Inventory_Records where trandate=#{#trandate} order by prd_prdcode;
+    <!--根据仓库名称获取对应仓库的库存详情-->
+    <select id="getInventorysByName"  resultType="com.example.demo.pojo.Inventorys" >
+        select * from Inventorys where inventory_name=#{inventory_name};
     </select>
 
-    <!--插入明细-->
-    <insert id="AddRecords">
-        insert into Inventory_Records
-        VALUES (#{prd_prdcode},#{prd_num},#{flag},#{trandate},#{transerseqno},#{bie01},#{teller});
+    <!--根据仓库名称和产品获取对应仓库的产品库存-->
+    <select id="getInventorysByPrdCode"  resultType="com.example.demo.pojo.Inventorys" >
+        select * from Inventorys where inventory_name=#{inventory_name} and prd_prdcode=#{prd_prdcode};
+    </select>
+
+    <!--新建仓库产品-->
+    <insert id="AddInventorys">
+        insert into Inventorys
+        VALUES (#{prd_prdcode},#{prd_num},#{inventory_name});
     </insert>
+
+    <!--更新仓库详情-->
+    <update id="ModifyInventorys">
+        update inventorys set prd_num=#{prd_num} where inventory_name=#{inventory_name} and prd_prdcode=#{prd_prdcode};
+    </update>
 
 
 </mapper>

@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.mapper.liMapper" >
-    <select id="getLi" resultType="com.example.demo.pojo.li" >
-        select * from li
+
+<!--namespace的值要和类路径完全一致要不然对应不上-->
+<mapper namespace="com.example.demo.mapper.UserMapper" >
+
+
+    <!--以下resultmap是用来做字段映射的-->
+    <resultMap id="user" type="com.example.demo.pojo.User">
+        <id column="user_id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="status"  property="status"></result>
+    </resultMap>
+
+    <select id="getUserById"  resultMap="user" >
+        select * from user where user_id=#{id};
     </select>
-    <select id="getLiById" resultType="com.example.demo.pojo.li" >
-        select * from li where id=#{id}
+
+    <!--根据用户名获取用户信息-->
+    <select id="getUserByUserName"  resultType="com.example.demo.pojo.User" >
+        select user_id id,username,password,status from user where username=#{username};
     </select>
-    <insert id="insertLi" >
-        insert into li (name,age) VALUES (#{name},#{age})
+
+    <!--下面的插入使用的是数据库自己生成id的方法-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id" keyColumn="user_id">
+        insert into user (username,password,status) VALUES (#{username},#{password},#{status});
     </insert>
-    <insert id="insertLi1" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        insert into li (name,age) VALUES (#{name},#{age})
-    </insert>
-    <update id="updateLiById">
-        update li set age=#{age} where id=#{id}
+    <!--更新状态和更新密码的sql-->
+    <update id="UpdateUser">
+        update user set password=#{password},status=#{status} where username=#{username};
     </update>
-    <update id="UpdateLiAllByid">
-        update li set age=#{age} ,name=#{name} where id=#{id}
+
+    <!--用户数据不删除，只更新状态-->
+    <update id="DeleteUserById">
+        update user set status=#{status}  where user_id=#{id};
     </update>
-    <delete id="deleteLiById">
-        delete from li where id=${id}
-    </delete>
+
 
 </mapper>

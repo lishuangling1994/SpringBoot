@@ -17,6 +17,9 @@
     <update id="updateLiById">
         update li set age=#{age} where id=#{id}
     </update>
+    <update id="UpdateLiAllByid">
+        update li set age=#{age} ,name=#{name} where id=#{id}
+    </update>
     <delete id="deleteLiById">
         delete from li where id=${id}
     </delete>

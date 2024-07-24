@@ -3,39 +3,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--namespace的值要和类路径完全一致要不然对应不上-->
-<mapper namespace="com.example.demo.mapper.UserMapper" >
+<mapper namespace="com.example.demo.mapper.PrdInfoMapper" >
 
-
-    <!--以下resultmap是用来做字段映射的-->
-    <resultMap id="user" type="com.example.demo.pojo.User">
-        <id column="user_id" property="id"></id>
-        <result column="username" property="username"></result>
-        <result column="password" property="password"></result>
-        <result column="status"  property="status"></result>
-    </resultMap>
-
-    <select id="getUserById"  resultMap="user" >
-        select * from user where user_id=#{id};
+    <!--根据产品编码获取产品信息-->
+    <select id="getPrdInfo"  resultType="com.example.demo.pojo.PrdInfo" >
+        select * from prdinfo where prd_prdcode=#{prd_prdcode};
     </select>
 
-    <!--根据用户名获取用户信息-->
-    <select id="getUserByUserName"  resultType="com.example.demo.pojo.User" >
-        select user_id id,username,password,status from user where username=#{username};
+    <!--获取所有的产品信息-->
+    <select id="getAllPrdInfos"  resultType="com.example.demo.pojo.PrdInfo">
+        select * from prdinfo order by prd_prdcode;
     </select>
 
     <!--下面的插入使用的是数据库自己生成id的方法-->
-    <insert id="addUser" useGeneratedKeys="true" keyProperty="id" keyColumn="user_id">
-        insert into user (username,password,status) VALUES (#{username},#{password},#{status});
+    <insert id="AddPrdInfo" >
+        insert into prdinfo VALUES (#{prd_prdcode},#{prd_name},#{prd_price},#{prd_desc},#{prd_bei01},#{prd_status});
     </insert>
     <!--更新状态和更新密码的sql-->
-    <update id="UpdateUser">
-        update user set password=#{password},status=#{status} where username=#{username};
+    <update id="modifyPrdInfo">
+        update prdinfo set prd_name=#{prd_name},prd_price=#{prd_price},prd_desc=#{prd_desc},prd_status=#{prd_status},
+        prd_bei01=#{prd_bei01}
+        where prd_code=#{prd_prdcode};
     </update>
-
-    <!--用户数据不删除，只更新状态-->
-    <update id="DeleteUserById">
-        update user set status=#{status}  where user_id=#{id};
-    </update>
-
 
 </mapper>
