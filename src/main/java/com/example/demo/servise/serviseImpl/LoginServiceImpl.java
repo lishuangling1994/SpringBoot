@@ -7,6 +7,7 @@ import com.example.demo.servise.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 
 import javax.annotation.Resource;
@@ -37,7 +38,13 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public int ModifyPassword(User login) {
         String password=login.getPassword();
-        String md5After=MD5Utis.Md5(password);
+        //String md5After=MD5Utis.Md5(password);
+        String md5After=null;
+        try{
+            md5After=DigestUtils.md5DigestAsHex(password.getBytes("UTF-8"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         log.info("加密前"+password+"加密后"+md5After);
         login.setPassword(md5After);
         login.setStatus("0");
@@ -52,7 +59,14 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public int AddUser(User login) {
         String password=login.getPassword();
-        String md5After=MD5Utis.Md5(password);
+        //String md5After=MD5Utis.Md5(password);
+        String md5After=null;
+        try{
+            md5After=DigestUtils.md5DigestAsHex(password.getBytes("UTF-8"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         log.info("加密前"+password+"加密后"+md5After);
         login.setPassword(md5After);
         return userMapper.addUser(login);

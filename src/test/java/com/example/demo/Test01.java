@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.Tool.MD5Utis;
 import com.example.demo.pojo.Inventory_Records;
 import com.example.demo.pojo.PrdInfo;
 import com.example.demo.servise.Inventory_RecordService;
@@ -57,5 +58,11 @@ public class Test01 {
         inventory_records.setBei01("货架");
         inventory_records.setTeller("me");
         inventory_recordService.InsertRecord(inventory_records);
+    }
+    @org.junit.Test
+    public void testMd5(){
+        String before="123456";
+        String ater=MD5Utis.Md5(before);
+        System.out.println("加密前"+before+"加密后"+ater);
     }
 }

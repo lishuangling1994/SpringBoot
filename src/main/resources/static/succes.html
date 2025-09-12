@@ -5,6 +5,15 @@
     <title>succes</title>
 </head>
 <body>
- <div align="center">我已经成功登录了！</div>
+ <div align="center" id="app">{{ messge }}</div>
+ <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:app,
+        data:{
+            messge:"hello"
+        }
+    });
+</script>
  </body>
 </html>

@@ -9,8 +9,9 @@ import java.security.MessageDigest;
 public class MD5Utis {
     public final static String Md5(String str){
         char chars[]={'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
-        byte strTemp[]= str.getBytes();
         try {
+            byte strTemp[]= str.getBytes("UTF-8");
+
             MessageDigest messageDigest=MessageDigest.getInstance("MD5");
             messageDigest.update(strTemp);
             byte md[]=messageDigest.digest();
@@ -22,7 +23,8 @@ public class MD5Utis {
                 newstr[k++]=chars[byte0>>>4&0xf];
                 newstr[k++]=chars[byte0&0xf];
             }
-            return newstr.toString();
+            String md5a=new String(newstr);
+            return md5a;
         }catch (Exception e){
              return null;
         }

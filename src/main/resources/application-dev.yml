@@ -24,6 +24,11 @@ spring:
      static-locattions:
         classpath: /static  #声明资源的位置
      static-path-pattern: /**resource
+ redis:
+   port: 6379
+   host: 127.0.0.1
+   database: 0
+
 
 
 #2.配置mybatis开启myBatis的日志输出
